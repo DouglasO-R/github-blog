@@ -1,17 +1,18 @@
+import { RouterProvider } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { List } from "./components/List";
+
+import { router } from "./router";
 import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/themes/defaultTheme";
+
+
 
 function App() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
       <GlobalStyle />
-
-      <div style={{ padding: "10rem" }}>
-        <List />
-      </div>
+      <RouterProvider router={router} />
     </ThemeProvider>
   )
 }
