@@ -1,5 +1,5 @@
 import { ThemeProvider } from "styled-components";
-import { Card } from "./components/Card";
+import { List } from "./components/List";
 import { GlobalStyle } from "./styles/global";
 import { defaultTheme } from "./styles/themes/defaultTheme";
 
@@ -10,7 +10,7 @@ function App() {
       <GlobalStyle />
 
       <div style={{ padding: "10rem" }}>
-        <Card />
+        <List />
       </div>
     </ThemeProvider>
   )
