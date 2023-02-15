@@ -1,42 +1,44 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+import { faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons";
 
 import { Link } from "../Link";
 import { ProfileContainer, ProfileContent, ProfileFooter, ProfileHeader, ProfileInfo } from "./styles";
-import { faBuilding, faUserGroup } from "@fortawesome/free-solid-svg-icons";
+import { User } from "../../model/User";
 
+interface ProfileProps {
+    user: User
+}
 
-
-export function Profile() {
+export function Profile({ user }: ProfileProps) {
     return (
         <ProfileContainer>
-            <img src="https://via.placeholder.com/300 " alt="https://via.placeholder.com/150 " />
+            <img src={user.avatar} alt="github avatar of user" />
 
             <ProfileContent>
                 <ProfileHeader>
-                    <h1>Cameron Williamson</h1>
-                    <Link text="github" to="/home" icon="goTo" />
+                    <h1>{user.name}</h1>
+                    <Link text="github" to={`${user.html_url}`} icon="goTo" />
                 </ProfileHeader>
 
                 <ProfileInfo>
-                    Tristique volutpat pulvinar vel massa, pellentesque egestas.
-                    Eu viverra massa quam dignissim aenean malesuada suscipit.
-                    Nunc, volutpat pulvinar vel mass.
+                    {user.bio}
                 </ProfileInfo>
 
                 <ProfileFooter>
                     <div>
-                        <FontAwesomeIcon icon={faUserGroup} />
-                        Douglas
+                        <FontAwesomeIcon icon={faGithub} />
+                        {user.login}
                     </div>
 
                     <div>
                         <FontAwesomeIcon icon={faBuilding} />
-                        Douglas
+                        {user.company ?? "don't have"}
                     </div>
 
                     <div>
                         <FontAwesomeIcon icon={faUserGroup} />
-                        Douglas
+                        {user.following}
                     </div>
                 </ProfileFooter>
             </ProfileContent>

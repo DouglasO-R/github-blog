@@ -10,7 +10,7 @@ interface LinkProps {
 
 export function Link({ text, to, icon }: LinkProps) {
     return (
-        <LinkStyle href={to}>
+        <LinkStyle href={to} target="_blank">
             {icon === "goBack" && <FontAwesomeIcon icon={faChevronLeft} />}
             {text}
             {icon === "goTo" && <FontAwesomeIcon icon={faArrowUpRightFromSquare} />}
