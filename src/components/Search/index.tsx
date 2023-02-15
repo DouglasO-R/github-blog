@@ -1,7 +1,13 @@
 import { InputStyle, SearchContainer, SearchHeader } from "./styles";
 
+interface SearchProps {
+    onSearch: (filter: string) => void
+}
+export function Search({ onSearch }: SearchProps) {
 
-export function Search() {
+    const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        onSearch(e.target.value);
+    }
 
     return (
         <SearchContainer>
@@ -14,6 +20,7 @@ export function Search() {
             <InputStyle
                 type="text"
                 placeholder="Buscar conteúdo"
+                onChange={handleOnchange}
             />
         </SearchContainer>
     )

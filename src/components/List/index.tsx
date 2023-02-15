@@ -1,18 +1,23 @@
 import { Card } from "../Card";
+
+import { Post } from "../../model/Posts";
+
 import { ListContainer } from "./style";
 
 
-const users = Array(9).fill(0);
-
-const renderUsers = (item: any, index: number) => (
-    <Card key={index} />
+const renderUsers = (post: Post, index: number) => (
+    <Card key={index} post={post} />
 )
 
-export function List() {
+interface ListProps {
+    posts: Post[]
+}
+
+export function List({ posts }: ListProps) {
 
     return (
         <ListContainer>
-            {users.map(renderUsers)}
+            {posts.map(renderUsers)}
         </ListContainer>
     )
 }

@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
+
 import { List } from "../../components/List";
 import { Profile } from "../../components/Profile";
 import { Search } from "../../components/Search";
+
+import { Post } from "../../model/Posts";
 import { User } from "../../model/User";
+
 import { HomeContainer } from "./styles";
-
-
-
 
 
 
@@ -14,7 +15,9 @@ import { HomeContainer } from "./styles";
 
 export function Home() {
     const [user, setUser] = useState<User>({} as User);
+    const [posts, setPosts] = useState<Post[]>([]);
 
+    const [filter, setFilter] = useState("");
 
     const getUserProfile = async (username: string) => {
         const response = await fetch(`https://api.github.com/users/${username}`);
@@ -22,11 +25,22 @@ export function Home() {
         setUser(new User(data));
     }
 
-
+    const getPosts = async (username: string) => {
+        const response = await fetch(`https://api.github.com/search/issues?q=${filter}%20repo:${username}/reactjs-github-blog-challenge`)
+        const data = await response.json();
+        const posts = await data.items.map((item: any) => new Post({ user_login: item.user.login, ...item }))
+        console.log(data);
+        setPosts(posts);
+    }
 
     useEffect(() => {
-        getUserProfile("douglaso-r");
-    }, [])
+        getUserProfile("rocketseat-education");
+        getPosts("rocketseat-education")
+    }, [filter])
+
+    const HandleFilter = (filter: string) => {
+        setFilter(filter)
+    }
 
 
 
@@ -37,8 +51,8 @@ export function Home() {
             </header>
 
             <main className="content">
-                <Search />
-                <List />
+                <Search onSearch={HandleFilter} />
+                <List posts={posts} />
             </main >
 
         </HomeContainer>

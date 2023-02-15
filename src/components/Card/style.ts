@@ -1,5 +1,15 @@
 import styled from "styled-components"
 
+
+
+export const CardLink = styled.a`
+    text-decoration: none;
+    background: ${({ theme }) => theme.colors.post};
+    border: 1px solid ${({ theme }) => theme.colors.post};
+    border-radius: 10px;
+    color:  ${({ theme }) => theme.colors.text};
+`
+
 export const CardContainer = styled.article`
     display: flex;
     flex-direction: column;
@@ -18,13 +28,11 @@ export const CardHeader = styled.header`
     justify-content: space-between;
 
     > h1 {
-        width: 80%;
         font: 700 1.25rem Nunito;
         color: ${({ theme }) => theme.colors.title};
     }
 
     > span {
-        flex: 1;
         font: 400 0.875rem Nunito;
         color: ${({ theme }) => theme.colors.span};
     }
