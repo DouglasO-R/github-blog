@@ -11,7 +11,7 @@ export const LinkStyle = styled.a`
 
     color: ${({ theme }) => theme.colors.blue};
     border: 1px solid transparent;
-    max-width: 4.875rem;
+    /* max-width: 4.875rem; */
     
 
     text-transform: uppercase;
