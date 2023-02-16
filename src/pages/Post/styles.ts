@@ -61,4 +61,43 @@ export const PostContent = styled.section`
     max-width: 54rem;
     margin: 0 auto;
     padding: 2.5rem 2rem;
+
+    p {
+      margin-block: .5rem;
+    }
+
+    strong {
+      color: ${({ theme }) => theme.colors.subtitle};
+    }
+
+    h2 {
+      margin-block: 2.5rem 1.5rem;
+    }
+
+    h3 {
+      margin-block: 1.5rem 1rem;
+    }
+
+    a {
+      color: ${({ theme }) => theme.colors.blue};
+      text-decoration: none;
+      
+      :hover {
+        text-decoration: underline;
+      }
+    }
+
+    ul {
+      margin-block: 1rem;
+      list-style-position: inside;
+
+      li + li {
+        margin-top: .5rem;
+      }
+    }
+
+    img {
+      width: 100%;
+      margin-block: 1rem;
+  }
 `

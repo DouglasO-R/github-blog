@@ -16,4 +16,8 @@ export const GlobalStyle = createGlobalStyle`
     body,input,textarea,button{
         font:400 1rem Nunito,sans-serif ;
     }
+
+    h1, h2, h3 {
+        color: ${({ theme }) => theme.colors.title};
+    }
 `
