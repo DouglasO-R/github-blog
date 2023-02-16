@@ -1,14 +1,14 @@
 import { List } from "../../components/List";
 import { Profile } from "../../components/Profile";
 import { Search } from "../../components/Search";
-import { useGitHub } from "../../hooks/useGitHub";
+import { useDataFetchGitHub } from "../../hooks/useDataFetchGitHub";
 
 import { HomeContainer } from "./styles";
 
 
 
 export function Home() {
-    const { user, posts, HandleFilter } = useGitHub();
+    const { user, posts, HandleFilter, quantityPosts } = useDataFetchGitHub();
 
     return (
         <HomeContainer>
@@ -17,7 +17,7 @@ export function Home() {
             </header>
 
             <main className="content">
-                <Search onSearch={HandleFilter} />
+                <Search onSearch={HandleFilter} quantityPosts={quantityPosts} />
                 <List posts={posts} />
             </main >
 

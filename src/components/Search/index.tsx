@@ -1,9 +1,10 @@
 import { InputStyle, SearchContainer, SearchHeader } from "./styles";
 
 interface SearchProps {
-    onSearch: (filter: string) => void
+    onSearch: (filter: string) => void;
+    quantityPosts: number
 }
-export function Search({ onSearch }: SearchProps) {
+export function Search({ onSearch, quantityPosts }: SearchProps) {
 
     const handleOnchange = (e: React.ChangeEvent<HTMLInputElement>) => {
         onSearch(e.target.value);
@@ -14,7 +15,7 @@ export function Search({ onSearch }: SearchProps) {
 
             <SearchHeader>
                 <h1>Publicações</h1>
-                <span>6 publicações</span>
+                <span>{quantityPosts} publicações</span>
             </SearchHeader>
 
             <InputStyle
