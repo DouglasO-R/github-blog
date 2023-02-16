@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactMarkdown from 'react-markdown'
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -17,7 +17,7 @@ export function Post() {
     const { post } = useParams();
     const [issue, setIssue] = useState<postType>({} as postType);
     const [loading, setLoading] = useState(true);
-
+    const navigate = useNavigate()
     const getPost = async () => {
         const response = await fetch(`https://api.github.com/repos/rocketseat-education/reactjs-github-blog-challenge/issues/${post}`);
         const data = await response.json();
@@ -28,7 +28,9 @@ export function Post() {
     useEffect(() => {
         getPost();
     }, [])
-
+    const handleGoBackPage = () => {
+        navigate(-1);
+    }
 
     return (
         <PostContainer>
@@ -40,7 +42,7 @@ export function Post() {
                         <PostInfo>
                             {/* Extract in component */}
                             <PostHeader>
-                                <Link to="/" text="voltar" icon='goBack' />
+                                <Link onGoBack={handleGoBackPage} text="voltar" icon='goBack' />
                                 <Link to={issue.Url} text="Ver no github" icon='goTo' />
                             </PostHeader>
 

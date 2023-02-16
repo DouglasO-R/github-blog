@@ -4,16 +4,26 @@ import { LinkStyle } from "./styles";
 
 interface LinkProps {
     text: string;
-    to: string;
+    to?: string;
     icon: "goBack" | "goTo";
+    onGoBack?: () => void
 }
 
-export function Link({ text, to, icon }: LinkProps) {
+export function Link({ text, to, icon, onGoBack }: LinkProps) {
+
     return (
-        <LinkStyle to={to} target="_blank">
-            {icon === "goBack" && <FontAwesomeIcon icon={faChevronLeft} />}
-            {text}
-            {icon === "goTo" && <FontAwesomeIcon icon={faArrowUpRightFromSquare} />}
+        <LinkStyle >
+            {icon === "goTo" ? (
+                <a href={to} target="_blank">
+                    {text}
+                    <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                </a>
+            ) : (
+                <button type="button" onClick={onGoBack}>
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                    {text}
+                </button>
+            )}
         </LinkStyle>
 
     )
